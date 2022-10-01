@@ -1,0 +1,11 @@
+---
+- name: Set Warning Banner for Standard Login Services
+  template: 
+    src: motd.j2 
+    dest: "{{ item }}"
+    backup: yes
+  changed_when: false
+  with_items:
+    - /etc/motd
+    - /etc/issue
+    - /etc/issue.net

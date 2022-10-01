@@ -1,0 +1,6 @@
+---
+- name: Configure NTP - Install Package
+  package:
+    name: ntp
+    state: present
+  when: ansible_distribution == "Ubuntu"

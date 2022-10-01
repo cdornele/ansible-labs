@@ -1,0 +1,21 @@
+---
+- name: Get the repo
+  shell: wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4%2Bubuntu18.04_all.deb
+
+- name: Install Install repo
+  shell: dpkg -i zabbix-release_6.0-4+ubuntu18.04_all.deb
+
+- name: Update opearating system
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install default packages
+  ansible.builtin.apt:
+    pkg:
+     - zabbix-server-mysql 
+     - zabbix-frontend-php 
+     - zabbix-apache-conf 
+     - zabbix-sql-scripts 
+     - zabbix-agent
+
+

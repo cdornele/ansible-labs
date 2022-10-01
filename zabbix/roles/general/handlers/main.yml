@@ -1,5 +1,1 @@
 ---
-- name: restart waagent
-  service:
-    name: waagent
-    state: restarted

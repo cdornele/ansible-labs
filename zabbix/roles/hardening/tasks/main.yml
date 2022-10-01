@@ -1,12 +1,20 @@
 ---
+# Include Variables Files
+#******************************************************************************
+- name: Include Variables
+  include_vars: "vars.yml"
 
-# Disable unused filesystem
+# Include the individual tasks files
+#******************************************************************************
 
-- name: Ensure mounting of cramfs filesystems is disabled
-  lineinfile:
-    path: /etc/modprobe.d/cramfs.conf
-    line: install cramfs /bin/true
-    state: present
-    backup: yes
-  check_mode: yes
-  notify: run cramfs
+- include: "secure_boot.yml"
+- include: "ssh_settings.yml"
+- include: "configure_pam.yml"
+- include: "account_settings.yml"
+- include: "misc.yml"
+- include: "ntp.yml"
+- include: "cron.yml"
+- include: "core_dumps.yml"
+- include: "systemctl.yml"
+- include: "kernel_modules.yml"
+- include: "reboot.yml"

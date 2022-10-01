@@ -227,6 +227,15 @@ resource "azurerm_linux_virtual_machine" "linux-vm" {
   name                  = "zabbix-vm"
   network_interface_ids = [azurerm_network_interface.linux-vm-nic.id]
   size                  = "Standard_D2s_v4"
+  computer_name  = "zabbix-vm"
+  admin_username = "cbotlocal"
+  admin_password = "8e2yeAR$fq2tNyT#B5c"
+  disable_password_authentication = false
+  
+  tags = {
+    environment = "lab",
+    customer = "GTA"
+  }
 
   source_image_reference {
     offer     = "UbuntuServer"
@@ -241,16 +250,8 @@ resource "azurerm_linux_virtual_machine" "linux-vm" {
     storage_account_type = "Standard_LRS"
   }
 
-  computer_name  = "zabbix-vm"
-  admin_username = "cbotlocal"
-  admin_password = "8e2yeAR$fq2tNyT#B5c"
-
-
-  disable_password_authentication = false
-
-  tags = {
-    environment = "lab",
-    customer = "GTA"
+  boot_diagnostics {
+    storage_account_uri = azurerm_storage_account.stg.primary_blob_endpoint
   }
 }
 

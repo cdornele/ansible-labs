@@ -1,0 +1,75 @@
+---
+
+# Disable unused filesystem
+
+- name: Ensure mounting of cramfs filesystems is disabled
+  lineinfile:
+    path: /etc/modprobe.d/cramfs.conf
+    line: install cramfs /bin/true
+    state: present
+    create: yes
+    backup: yes
+  check_mode: yes
+
+
+- name: Ensure mounting of freevxfs filesystems is disabled
+  lineinfile:
+    path: /etc/modprobe.d/freevxfs.conf
+    line: install freevxfs /bin/true
+    state: present
+    create: yes
+    backup: yes
+  check_mode: yes
+
+
+- name: Ensure mounting of jffs2 filesystems is disabled
+  lineinfile:
+    path: /etc/modprobe.d/jffs2.conf
+    line: install jffs2 /bin/true
+    state: present
+    create: yes
+    backup: yes
+  check_mode: yes
+
+
+- name: Ensure mounting of hfs filesystems is disabled
+  lineinfile:
+    path: /etc/modprobe.d/hfs.conf
+    line: install hfs /bin/true
+    state:  present
+    create: yes
+    backup: yes
+  check_mode: yes
+
+
+- name: Ensure mounting of hfsplus filesystems is disabled
+  lineinfile:
+    path: /etc/modprobe.d/hfsplus.conf
+    line: install hfsplus /bin/true
+    state:  present
+    create: yes
+    backup: yes
+  check_mode: yes
+
+
+- name: Ensure mounting of udf filesystems is disabled
+  lineinfile:
+    path: /etc/modprobe.d/udf.conf
+    line: install udf /bin/true
+    state:  present
+    create: yes
+    backup: yes
+  check_mode: yes
+
+
+# Ensure /tmp is configured
+
+- name: Ensure mounting of udf filesystems is disabled
+  lineinfile:
+    path: /etc/fstab
+    line: tmpfs /tmp  tmpfs defaults,rw,nosuid,nodev,noexec,relatime  0 0
+    state:  present
+    create: yes
+    backup: yes
+  check_mode: yes
+
