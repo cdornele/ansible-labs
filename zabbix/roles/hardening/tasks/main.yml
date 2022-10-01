@@ -1,0 +1,12 @@
+---
+
+# Disable unused filesystem
+
+- name: Ensure mounting of cramfs filesystems is disabled
+  lineinfile:
+    path: /etc/modprobe.d/cramfs.conf
+    line: install cramfs /bin/true
+    state: present
+    backup: yes
+  check_mode: yes
+  notify: run cramfs

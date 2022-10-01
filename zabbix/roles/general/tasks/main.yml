@@ -1,0 +1,47 @@
+---
+- name: Update opearating system
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Upgrade Dist
+  ansible.builtin.apt:
+    upgrade: dist
+
+- name: Install default packages
+  ansible.builtin.apt:
+    pkg:
+      - ca-certificates 
+      - curl 
+      - apt-transport-https 
+      - lsb-release
+      - gnupg
+      - vim
+      - git
+      - aide 
+      - aide-common
+      - rsyslog
+      - apparmor
+      - iptables 
+      - iptables-persistent
+      - auditd 
+      - audispd-plugins
+      - sudo
+      - certbot
+      - python3-certbot-apache
+
+- name: Set LocalTime to Madrid
+  file:
+    src: "/usr/share/zoneinfo/Europe/Madrid"
+    dest: "/etc/localtime"
+    state: link
+
+- name: Set Swap file
+  template:
+    src: waagent.conf.j2
+    dest: /etc/waagent.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart waagent
+
+

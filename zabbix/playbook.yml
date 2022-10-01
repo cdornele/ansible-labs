@@ -1,0 +1,8 @@
+---
+- name: Apply configuration to newly deployed machines
+  hosts: all
+  become: true
+
+  roles:
+   - general
+   - hardening
